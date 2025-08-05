@@ -1,4 +1,4 @@
-# 🚀 Welcome to LiftUP-Ai
+# Welcome to LiftUP-Ai
 
 **LiftUP-Ai** is a modern, accessible, and multilingual (currently a simple starter) mobile app built with [Expo](https://expo.dev) and [React Native](https://reactnative.dev). The app is designed with inclusivity in mind, featuring built-in accessibility tools, theme switching, and support for multiple languages.
 
