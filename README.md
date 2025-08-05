@@ -1,50 +1,58 @@
-# Welcome to your Expo app 👋
+# 🚀 Welcome to LiftUP-Ai
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**LiftUP-Ai** is a modern, accessible, and multilingual (currently a simple starter) mobile app built with [Expo](https://expo.dev) and [React Native](https://reactnative.dev). The app is designed with inclusivity in mind, featuring built-in accessibility tools, theme switching, and support for multiple languages.
 
-## Get started
+---
 
-1. Install dependencies
+## 🧠 Key Features
 
-   ```bash
-   npm install
-   ```
+- 🏠 **Home Screen** – Welcome users with intuitive UI.
+- 🌐 **Multi-language Support** – English, বাংলা, Deutsch, Français, Español.
+- ⚙️ **Accessibility Modal** – Toggle for:
+  - Font scaling
+  - Dark/Light mode switch (based on device color scheme)
+- 🔐 **Authentication** – Login screen.
+- 🌓 **Color Scheme Detection** – Automatically adapts to device theme (dark/light).
+- 📱 **Responsive UI** – Styled with StyleSheet.
+- 🗂️ Modular file structure with **Expo Router**.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🧭 How to Run the Project
 
-In the output, you'll find options to open the app in a
+### Prerequisites
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Node.js (18+)
+- Expo CLI:
+- 
+  npm install -g expo-cli
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+  
+Clone and Install
 
-## Get a fresh project
+git clone https://github.com/ratulhasan987/liftup-ai.git
+cd liftup-ai
+npm install
 
-When you're ready, run:
+Start development server
 
-```bash
+npx expo start
+Scan QR code using:
+Expo Go
+
+Android Emulator
+
+iOS Simulator
+
+Physical device
+
+🧼 Reset to fresh project
+To start clean and remove starter code:
+
 npm run reset-project
-```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+📚 Learn More
+Expo Documentation
+React Native Docs
+React Navigation
