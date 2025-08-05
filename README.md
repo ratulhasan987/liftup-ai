@@ -33,15 +33,12 @@ Clone and Install
 - npm install
 
 Start development server
-
 - npx expo start
-- Scan QR code using Expo Go
+- Scan QR code using Expo Go app with Physical device
 
-Android Emulator
-
-iOS Simulator
-
-Physical device
+or use 
+- Android Emulator
+- iOS Simulator
 
 🧼 Reset to fresh project
 To start clean and remove starter code:
