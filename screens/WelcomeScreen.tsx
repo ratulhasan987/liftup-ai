@@ -250,7 +250,7 @@ export default function WelcomeScreen() {
         </View>
       </View>
 
-      {/* Modal */}
+      {/* Accessibility Modal */}
       <AccessibilityModal
         visible={accessibilityVisible}
         onClose={toggleModal}
