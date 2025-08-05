@@ -28,15 +28,14 @@
   
 Clone and Install
 
-git clone https://github.com/ratulhasan987/liftup-ai.git
-cd liftup-ai
-npm install
+- git clone https://github.com/ratulhasan987/liftup-ai.git
+- cd liftup-ai
+- npm install
 
 Start development server
 
-npx expo start
-Scan QR code using:
-Expo Go
+- npx expo start
+- Scan QR code using Expo Go
 
 Android Emulator
 
@@ -46,8 +45,7 @@ Physical device
 
 🧼 Reset to fresh project
 To start clean and remove starter code:
-
-npm run reset-project
+- npm run reset-project
 
 
 📚 Learn More
