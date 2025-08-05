@@ -8,9 +8,7 @@
 
 - 🏠 **Home Screen** – Welcome users with intuitive UI.
 - 🌐 **Multi-language Support** – English, বাংলা, Deutsch, Français, Español.
-- ⚙️ **Accessibility Modal** – Toggle for:
-  - Font scaling
-  - Dark/Light mode switch (based on device color scheme)
+- ⚙️ **Accessibility Modal menu with Dark/Light mode switch button. 
 - 🔐 **Authentication** – Login screen.
 - 🌓 **Color Scheme Detection** – Automatically adapts to device theme (dark/light).
 - 📱 **Responsive UI** – Styled with StyleSheet.
