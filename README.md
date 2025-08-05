@@ -46,6 +46,5 @@ To start clean and remove starter code:
 
 
 📚 Learn More
-Expo Documentation
-React Native Docs
-React Navigation
+- Expo Documentation
+- React Native Docs
