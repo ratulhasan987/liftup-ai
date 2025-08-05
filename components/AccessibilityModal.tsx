@@ -5,8 +5,14 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  Dimensions,
+  ScrollView,
   Switch,
 } from 'react-native';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
+const { height } = Dimensions.get('window');
 
 interface Props {
   visible: boolean;
@@ -21,6 +27,38 @@ interface Props {
   onReset: () => void;
 }
 
+const features = [
+  { icon: 'contrast-circle', label: 'Contrast+', screen: 'ContrastScreen' },
+  {
+    icon: 'link-variant',
+    label: 'Highlight Links',
+    screen: 'HighlightLinksScreen',
+  },
+  { icon: 'format-size', label: 'Bigger Text', screen: 'BiggerTextScreen' },
+  {
+    icon: 'format-line-spacing',
+    label: 'Text Spacing',
+    screen: 'TextSpacingScreen',
+  },
+  {
+    icon: 'pause-circle-outline',
+    label: 'Pause Animations',
+    screen: 'PauseAnimationsScreen',
+  },
+  { icon: 'alphabetical', label: 'Dyslexia', screen: 'DyslexiaScreen' },
+  { icon: 'cursor-default-click', label: 'Cursor', screen: 'CursorScreen' },
+  {
+    icon: 'format-align-center',
+    label: 'Text Align',
+    screen: 'TextAlignScreen',
+  },
+  {
+    icon: 'format-line-weight',
+    label: 'Line Height',
+    screen: 'LineHeightScreen',
+  },
+];
+
 const AccessibilityModal: React.FC<Props> = ({
   visible,
   onClose,
@@ -28,62 +66,88 @@ const AccessibilityModal: React.FC<Props> = ({
   onChange,
   onReset,
 }) => {
+  const navigation = useNavigation();
+  const isDark = settings.darkMode;
+
+  const colors = {
+    background: isDark ? '#1E1E1E' : '#FFFFFF',
+    text: isDark ? '#FFFFFF' : '#000000',
+    tile: isDark ? '#2E2E2E' : '#FFFFFF',
+    dragHandle: isDark ? '#666' : '#ccc',
+    icon: isDark ? '#FFFFFF' : '#000000',
+  };
+
   return (
     <Modal visible={visible} animationType="slide" transparent>
-      <View style={styles.overlay}>
-        <View style={styles.modal}>
-          <Text style={styles.header}>Accessibility Menu</Text>
+      <TouchableOpacity
+        activeOpacity={1}
+        onPressOut={onClose}
+        style={styles.overlay}
+      >
+        <TouchableOpacity
+          activeOpacity={1}
+          onPress={() => {}}
+          style={[styles.container, { backgroundColor: colors.background }]}
+        >
+          {/* Close Button */}
+          <TouchableOpacity style={styles.closeIcon} onPress={onClose}>
+            <Ionicons name="close" size={24} color={colors.icon} />
+          </TouchableOpacity>
 
-          <View style={styles.option}>
-            <Text style={styles.optionLabel}>Dark Mode</Text>
+          <View
+            style={[styles.dragHandle, { backgroundColor: colors.dragHandle }]}
+          />
+
+          <Text style={[styles.header, { color: colors.text }]}>
+            Accessibility Menu
+          </Text>
+
+          {/* Dark Mode Option */}
+          <View style={styles.optionRow}>
+            <Text style={[styles.optionLabel, { color: colors.text }]}>
+              Dark Mode
+            </Text>
             <Switch
               value={settings.darkMode}
               onValueChange={val => onChange({ darkMode: val })}
             />
           </View>
 
-          <View style={styles.option}>
-            <Text style={styles.optionLabel}>Line Height</Text>
-            <TouchableOpacity onPress={() => onChange({ lineHeight: 22 })}>
-              <Text style={styles.button}>Normal</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => onChange({ lineHeight: 32 })}>
-              <Text style={styles.button}>Wide</Text>
-            </TouchableOpacity>
-          </View>
+          {/* Feature Grid */}
+          <ScrollView contentContainerStyle={styles.grid}>
+            {features.map((feature, index) => (
+              <TouchableOpacity
+                key={index}
+                style={[styles.tile, { backgroundColor: colors.tile }]}
+                onPress={() => {
+                  onClose();
+                  navigation.navigate(feature.screen as never);
+                }}
+              >
+                <MaterialCommunityIcons
+                  name={feature.icon as any}
+                  size={28}
+                  color="#A41CE2"
+                />
+                <Text style={[styles.label, { color: colors.text }]}>
+                  {feature.label}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
 
-          <View style={styles.option}>
-            <Text style={styles.optionLabel}>Letter Spacing</Text>
-            <TouchableOpacity onPress={() => onChange({ letterSpacing: 0 })}>
-              <Text style={styles.button}>Normal</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => onChange({ letterSpacing: 2 })}>
-              <Text style={styles.button}>Wide</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.option}>
-            <Text style={styles.optionLabel}>Text Align</Text>
-            <TouchableOpacity onPress={() => onChange({ textAlign: 'left' })}>
-              <Text style={styles.button}>Left</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => onChange({ textAlign: 'center' })}>
-              <Text style={styles.button}>Center</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => onChange({ textAlign: 'right' })}>
-              <Text style={styles.button}>Right</Text>
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity style={styles.resetBtn} onPress={onReset}>
+          {/* Reset Button */}
+          <TouchableOpacity style={styles.resetButton} onPress={onReset}>
+            <MaterialCommunityIcons
+              name="restore" // You can change this icon name
+              size={20}
+              color="#fff"
+              style={{ marginRight: 8 }}
+            />
             <Text style={styles.resetText}>Reset All Accessibility</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity style={styles.closeBtn} onPress={onClose}>
-            <Text style={styles.closeText}>Close</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+        </TouchableOpacity>
+      </TouchableOpacity>
     </Modal>
   );
 };
@@ -93,50 +157,81 @@ export default AccessibilityModal;
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: '#00000099',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-end',
+    backgroundColor: '#00000040',
   },
-  modal: {
-    width: '90%',
-    backgroundColor: '#fff',
+  container: {
+    height: height * 0.65,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
     padding: 20,
-    borderRadius: 16,
+    paddingBottom: 40,
+  },
+  closeIcon: {
+    position: 'absolute',
+    right: 20,
+    top: 20,
+    zIndex: 2,
+  },
+  dragHandle: {
+    width: 40,
+    height: 5,
+    borderRadius: 3,
+    alignSelf: 'center',
+    marginBottom: 12,
   },
   header: {
     fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 14,
-    textAlign: 'center',
+    fontWeight: '600',
+    textAlign: 'left',
+    marginBottom: 20,
   },
-  option: {
-    marginVertical: 8,
+  optionRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
   },
   optionLabel: {
     fontWeight: '600',
-    marginBottom: 4,
+    fontSize: 16,
   },
-  button: {
-    color: '#A41CE2',
-    fontWeight: '600',
-    marginTop: 4,
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingTop: 8,
   },
-  resetBtn: {
-    marginTop: 20,
+  tile: {
+    width: '30%',
+    aspectRatio: 1,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 3,
+  },
+  label: {
+    fontSize: 12,
+    textAlign: 'center',
+    fontWeight: '500',
+    marginTop: 6,
+  },
+  resetButton: {
+    marginTop: 10,
     backgroundColor: '#A41CE2',
-    padding: 12,
+    paddingVertical: 14,
     borderRadius: 30,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
+
   resetText: {
     color: '#fff',
-    textAlign: 'center',
     fontWeight: 'bold',
-  },
-  closeBtn: {
-    marginTop: 10,
-  },
-  closeText: {
-    textAlign: 'center',
-    color: '#666',
   },
 });

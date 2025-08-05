@@ -2,7 +2,7 @@ import WelcomeScreen from '@/screens/WelcomeScreen';
 import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 
-export default function App() {
+export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="dark-content" />
