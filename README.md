@@ -34,7 +34,7 @@ Clone and Install
 
 Start development server
 - npx expo start
-- Scan QR code using Expo Go app with Physical device
+- Scan QR code using 'Expo Go' app with your Physical mobile device
 
 or use 
 - Android Emulator
